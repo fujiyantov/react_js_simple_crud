@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import PaginationFactory from "react-bootstrap-table2-paginator";
 import { Spinner, Modal, Button, Image } from "react-bootstrap";
+import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 
 function App() {
   const [data, setData] = useState(null);
@@ -84,11 +85,11 @@ function App() {
   };
 
   const columns = [
-    { dataField: "name", text: "Fist Name" },
+    { dataField: "name", text: "Name", filter: textFilter() },
     { dataField: "phone_number", text: "Phone" },
     { dataField: "date_of_birth", text: "DOB" },
     { dataField: "street", text: "Address" },
-    { dataField: "position", text: "Current Position" },
+    { dataField: "position", text: "Current Position", filter: textFilter() },
     { dataField: "ktp_file", text: "KTP FILE", formatter: shwoKtpFile },
     { dataField: "id", text: "Action", formatter: actionField },
   ];
@@ -112,6 +113,7 @@ function App() {
             data={data}
             columns={columns}
             pagination={PaginationFactory()}
+            filter={filterFactory()}
           />
         )}
       </div>
